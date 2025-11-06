@@ -9,56 +9,31 @@ redirect_from:
 
 {% include base_path %}
 
-Education
-======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+## 颜铭锞  
+**邮箱**: 1305018437@qq.com | **手机**: 13537539857  
 
-Work experience
-======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+---
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+## 教育背景  
+### 东北大学医学与生物信息工程学院  
+**专业**: 生物医学工程 | **绩点排名**: 12/123 | **政治面貌**: 中共预备党员  
+**核心课程**:  
+- JaVa程序设计（92）  
+- C&C++高级语言程序设计（96）  
+- 力学（93）  
+- 计算机图形学和可视化（94）  
+- 热力学（98）  
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+---
 
-Publications
-======
-  <ul>{% for post in site.publications reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Talks
-======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+## 综合荣誉  
+### 论文成果  
+（请补充论文详细信息）  
+
+### 竞赛奖项  
+（请补充竞赛详细信息）  
+
+---
+
+## 未来学习和研究的计划  
+（请补充您的未来计划内容） 
