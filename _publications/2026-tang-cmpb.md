@@ -1,6 +1,7 @@
 ---
 title: "Lightweight element-wise product enhanced neural network for efficient arrhythmia detection on embedded devices"
 collection: publications
+category: journal-article
 permalink: /publication/2026-tang-cmpb
 date: 2026-01-01
 venue: 'Computer Methods and Programs in Biomedicine'
