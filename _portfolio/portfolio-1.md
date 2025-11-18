@@ -113,17 +113,17 @@ plt.show()
 ## 分析结果  
 
 ### 1. 探索性分析结果  
-![年龄分布直方图](/images/portfolio/python-data-visualization-practice/age_distribution.png)  
+![年龄分布直方图](/images/portfolio/age_distribution.png)  
 **结论**：患者年龄分布呈现多峰特征，主要集中在婴幼儿和青少年阶段。  
 
-![实验室指标箱线图](/images/portfolio/python-data-visualization-practice/lab_indicators_boxplot.png)  
+![实验室指标箱线图](/images/portfolio/lab_indicators_boxplot.png)  
 **结论**：死亡患者在多个实验室指标上表现出显著异常，尤其是炎症相关指标明显升高。
 
 ### 2. 模型评估结果  
-![混淆矩阵](/images/portfolio/python-data-visualization-practice/confusion_matrix.png)  
+![混淆矩阵](/images/portfolio/confusion_matrix.png)  
 **结论**：模型对存活患者预测准确率较高，但对死亡患者存在一定漏诊（假阴性）。  
 
-![ROC曲线](/images/portfolio/python-data-visualization-practice/roc_curve.png)  
+![ROC曲线](/images/portfolio/roc_curve.png)  
 **结论**：模型ROC曲线下面积（AUC）为0.85，表现良好，适用于临床辅助决策。
 
 
