@@ -1,5 +1,5 @@
 
-```yaml
+
 ---
 title: "Python数据可视化实战"
 collection: portfolio
@@ -89,4 +89,4 @@ confusion_matrix_plot(y_test, y_pred_prob, threshold=0.5)
 ![ROC曲线](/images/portfolio/python-data-visualization/roc_curve.png)  
 **分析结论**：ROC曲线下面积（AUC）达到0.85，表明模型具有较好的区分能力，适用于临床风险评估场景。
 
-```
+
