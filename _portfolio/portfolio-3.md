@@ -1,5 +1,3 @@
-
-
 ---
 title: "Python数据可视化实战"
 collection: portfolio
