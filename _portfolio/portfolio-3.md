@@ -1,90 +1,111 @@
+
 ---
-title: "Python数据可视化实战"
+title: "Python数据可视化与模型评估实战"
 collection: portfolio
-type: "Data Analysis"
-permalink: /portfolio/python-data-visualization
-date: 2025-11-19
-excerpt: "掌握Matplotlib和Seaborn绘制常用统计图表，为数据分析和模型评估创建可视化图形，编写可复用绘图函数。"
+type: "Machine Learning"
+permalink: /portfolio/portfolio-3
+date: 2024-01-01
+excerpt: "使用Matplotlib和Seaborn进行探索性数据分析，并通过混淆矩阵和ROC曲线评估逻辑回归模型性能"
 header:
   teaser: /images/portfolio/python-data-visualization/age_distribution.png
 tags:
-  - Data Visualization
-  - Python
-  - Matplotlib
-  - Seaborn
-  - Exploratory Data Analysis
+  - 数据可视化
+  - 探索性数据分析
+  - 模型评估
+  - 逻辑回归
 tech_stack:
   - name: Python
   - name: Matplotlib
   - name: Seaborn
   - name: Scikit-learn
-  - name: Pandas
-  - name: NumPy
 ---
 
-## 项目背景
-本项目旨在通过Python实现数据可视化实战，掌握使用Matplotlib和Seaborn绘制多种常用统计图表，为探索性数据分析和模型评估创建合适的可视化图形，并编写可复用的绘图函数提升代码效率。项目涵盖数据探索（EDA）和模型评估两大核心模块。
+## 项目背景  
+本项目旨在通过Python实现数据可视化与模型评估的完整流程，掌握以下核心技能：  
+1. 使用Matplotlib和Seaborn绘制直方图、箱线图等常用统计图表  
+2. 为探索性数据分析（EDA）选择合适的可视化方法  
+3. 通过混淆矩阵和ROC曲线评估机器学习模型性能  
 
 
-## 核心实现
+## 核心实现  
 
-### 1. 探索性数据分析可视化
-**箱线图绘制函数**  
-用于比较不同结局下各实验室指标分布：
+### 1. 探索性数据分析（EDA）  
+**年龄分布直方图**  
+通过直方图观察患者年龄分布：  
 ```python
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-def plot_lab_boxplots(data, columns, target_col):
-    fig, axs = plt.subplots(3, 2, constrained_layout=True, figsize=(10,10))
-    for i, col in enumerate(columns):
-        sns.boxplot(data=data, x=target_col, y=col, ax=axs[i//2, i%2])
-    plt.suptitle("不同结局下各实验室指标分布", fontsize=16)
-    plt.show()
-
-# 使用示例
-lab_columns = ['age_month', 'lab_5237_min', 'lab_5227_min', 'lab_5225_range', 'lab_5235_max', 'lab_5257_min']
-plot_lab_boxplots(picu_data, lab_columns, 'HOSPITAL_EXPIRE_FLAG')
-```
-
-### 2. 模型评估可视化
-**混淆矩阵热力图函数**  
-用于评估分类模型性能：
+plt.figure(figsize=(8, 5))
+sns.histplot(data=picu_data, x='age_month', kde=True)
+plt.title("年龄分布直方图")
+plt.show()
+```  
+**实验室指标箱线图**  
+比较存活与死亡患者的实验室指标分布：  
 ```python
-from sklearn.metrics import confusion_matrix
+colname = ['age_month', 'lab_5237_min', 'lab_5227_min', 'lab_5225_range', 'lab_5235_max', 'lab_5257_min']
+fig, axs = plt.subplots(3, 2, constrained_layout=True, figsize=(10, 10))
 
-def confusion_matrix_plot(y_true, y_pred_prob, threshold=0.5):
+for i in range(len(colname)):
+    sns.boxplot(data=picu_data, x='HOSPITAL_EXPIRE_FLAG', y=colname[i], ax=axs[i//2, i%2])
+
+plt.suptitle("不同结局下各实验室指标分布", fontsize=16)
+plt.show()
+```  
+
+### 2. 模型评估  
+**混淆矩阵热力图**  
+定义并调用混淆矩阵可视化函数：  
+```python
+def confusion_matrix_plot(y_true, y_pred_prob, threshold=0.5, title='混淆矩阵'):
     y_pred = (y_pred_prob > threshold).astype(int)
     cm = confusion_matrix(y_true, y_pred)
     
-    fig, ax = plt.subplots(figsize=(5,4))
+    fig, ax = plt.subplots(figsize=(5, 4))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', ax=ax)
+    
     ax.set_xlabel('预测标签')
     ax.set_ylabel('真实标签')
-    ax.set_title('混淆矩阵')
+    ax.set_title(title)
     ax.xaxis.set_ticklabels(['存活(0)', '死亡(1)'])
     ax.yaxis.set_ticklabels(['存活(0)', '死亡(1)'])
+    
     plt.show()
 
-# 使用示例
-confusion_matrix_plot(y_test, y_pred_prob, threshold=0.5)
-```
+# 调用函数
+confusion_matrix_plot(y_true=y_test, y_pred_prob=y_pred_prob, threshold=0.5)
+```  
+
+**ROC曲线**  
+绘制ROC曲线并计算AUC值：  
+```python
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_prob)
+roc_auc = roc_auc_score(y_test, y_pred_prob)
+
+plt.figure(figsize=(8, 6))
+plt.plot(fpr, tpr, color='darkorange', lw=2, label=f'ROC曲线 (AUC = {roc_auc:.2f})')
+plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
+plt.xlim([0.0, 1.0])
+plt.ylim([0.0, 1.05])
+plt.xlabel('假阳性率')
+plt.ylabel('真阳性率')
+plt.title('ROC曲线')
+plt.legend(loc="lower right")
+plt.show()
+```  
 
 
-## 分析结果
+## 分析结果  
 
-### 1. 数据分布探索
+### 1. 探索性数据分析结果  
 ![年龄分布直方图](/images/portfolio/python-data-visualization/age_distribution.png)  
-**分析结论**：患者年龄分布呈现多峰特征，主要集中在低龄段和中老年段，反映PICU患者年龄跨度较大。
+年龄分布直方图显示患者年龄主要集中在0-120个月之间，呈右偏分布。  
 
-![实验室指标箱线图](/images/portfolio/python-data-visualization/lab_indicators_boxplot.png)  
-**分析结论**：部分实验室指标（如lab_5235_max）在存活与死亡患者间存在显著分布差异，可作为潜在预后预测因子。
+![实验室指标箱线图](/images/portfolio/python-data-visualization/lab_indicators_boxplots.png)  
+箱线图对比了存活与死亡患者的实验室指标分布，部分指标（如lab_5235_max）在两组间存在显著差异，可作为潜在预测因子。  
 
-### 2. 模型评估结果
-![混淆矩阵热力图](/images/portfolio/python-data-visualization/confusion_matrix.png)  
-**分析结论**：逻辑回归模型在测试集上表现良好，真阳性率较高，但仍存在一定假阳性和假阴性，需进一步优化阈值或特征工程。
+### 2. 模型评估结果  
+![混淆矩阵](/images/portfolio/python-data-visualization/confusion_matrix.png)  
+混淆矩阵显示模型在测试集上的表现：真阳性率和真阴性率较高，但存在少量假阳性和假阴性预测。  
 
 ![ROC曲线](/images/portfolio/python-data-visualization/roc_curve.png)  
-**分析结论**：ROC曲线下面积（AUC）达到0.85，表明模型具有较好的区分能力，适用于临床风险评估场景。
-
+ROC曲线下面积（AUC）为0.85，表明模型具有较好的判别能力，能够有效区分存活与死亡患者。  
 
