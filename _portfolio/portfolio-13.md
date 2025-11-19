@@ -2,7 +2,7 @@
 title: "Python数据可视化与模型评估实战"
 collection: portfolio
 type: "Machine Learning"
-permalink: /portfolio/python-data-visualization-practice
+permalink: /portfolio/portfolio-3
 date: 2024-01-01
 excerpt: "使用Matplotlib和Seaborn进行探索性数据分析，并通过混淆矩阵和ROC曲线评估逻辑回归模型性能"
 header:
@@ -18,6 +18,24 @@ tech_stack:
   - name: Seaborn
   - name: Scikit-learn
 ---
+
+## 项目背景  
+本项目旨在通过Python实现数据可视化与模型评估的完整流程，掌握以下核心技能：  
+1. 使用Matplotlib和Seaborn绘制直方图、箱线图等常用统计图表  
+2. 为探索性数据分析（EDA）选择合适的可视化方法  
+3. 通过混淆矩阵和ROC曲线评估机器学习模型性能  
+
+
+## 核心实现  
+
+### 1. 探索性数据分析（EDA）  
+**年龄分布直方图**  
+通过直方图观察患者年龄分布：  
+```python
+plt.figure(figsize=(8, 5))
+sns.histplot(data=picu_data, x='age_month', kde=True)
+plt.title("年龄分布直方图")
+plt.show()
 
 ## 项目背景  
 本项目旨在通过Python实现数据可视化与模型评估的完整流程，掌握以下核心技能：  
