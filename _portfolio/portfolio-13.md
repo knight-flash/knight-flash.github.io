@@ -3,7 +3,7 @@
 title: "Python数据可视化与模型评估实战"
 collection: portfolio
 type: "Machine Learning"
-permalink: /portfolio/portfolio-3
+permalink: /portfolio/portfolio-13
 date: 2024-01-01
 excerpt: "使用Matplotlib和Seaborn进行探索性数据分析，并通过混淆矩阵和ROC曲线评估逻辑回归模型性能"
 header:
